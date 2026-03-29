@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://storepilot.eu/sitemap.xml

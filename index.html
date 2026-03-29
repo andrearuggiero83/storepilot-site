@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="it">
+<head>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260310h">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20260310h">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260310h">
+<link rel="shortcut icon" href="/favicon.ico?v=20260310h">
+
+
+
+
+
+
+
+
+
+
+
+<script src="/cookie-consent.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>StorePilot™ | Simulatore economico per ristoranti e food retail</title>
+
+<meta name="description" content="StorePilot™ è un simulatore economico per ristoranti e progetti food retail. Calcola ricavi, EBITDA e break-even prima di aprire un locale o valutare una nuova location." />
+
+<meta name="keywords" content="simulatore economico ristorante, calcolo break even ristorante, business plan ristorante, simulatore food retail, analisi economica ristorante, fattibilità ristorante, economia ristorante" />
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://storepilot.eu/">
+
+<link rel="alternate" hreflang="it" href="https://storepilot.eu/">
+<link rel="alternate" hreflang="en" href="https://storepilot.eu/en.html">
+
+<meta property="og:title" content="StorePilot™ – Simulatore economico per ristoranti e food retail">
+<meta property="og:description" content="Simula ricavi, EBITDA e break-even per ristoranti e progetti food retail prima di investire in una nuova location.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://storepilot.eu/">
+<meta property="og:image" content="https://storepilot.eu/logo.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="StorePilot™ – Simulatore economico per ristoranti">
+<meta name="twitter:description" content="Calcola break-even, ricavi e margini di un ristorante prima di aprire una nuova attività.">
+
+</head>
+
+  <style>
+    :root{
+      --bg:#efe8df;
+      --ink:#101114;
+      --muted:rgba(16,17,20,.68);
+      --hero:#111315;
+      --hero-ink:rgba(255,255,255,.94);
+      --hero-muted:rgba(255,255,255,.74);
+      --card:rgba(255,255,255,.66);
+      --border:rgba(16,17,20,.10);
+      --radius:22px;
+      --radius-lg:32px;
+      --max:1120px;
+      --btn:#ffffff;
+      --btn-ink:#111315;
+      --shadow: 0 18px 60px rgba(0,0,0,.16);
+      --shadow-soft: 0 14px 40px rgba(0,0,0,.10);
+      --accent: rgba(132,102,91,0.95);
+      --accent-soft: rgba(132,102,91,0.12);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:36px 20px 92px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .brand-mini{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:-.2px;
+      font-size:14px;
+      color:rgba(0,0,0,.82);
+    }
+    .dot{
+      width:8px;height:8px;border-radius:999px;background:var(--accent);
+      box-shadow:0 0 0 7px var(--accent-soft);
+    }
+    .top-note{
+      font-size:12.5px;
+      color:rgba(0,0,0,.58);
+      text-align:right;
+      line-height:1.25;
+    }
+
+    .hero{
+      background:radial-gradient(1200px 600px at 70% -10%, rgba(132,102,91,.22), transparent 60%),
+                 linear-gradient(180deg,#0f1114,#151a22);
+      border-radius:var(--radius-lg);
+      padding:58px 56px;
+      color:var(--hero-ink);
+      display:grid;
+      grid-template-columns:1.05fr 1.15fr;
+      gap:44px;
+      align-items:center;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(255,255,255,.06);
+      animation:heroIn .9s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .logo{
+      width:100%;
+      max-width:460px;
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,.30));
+    }
+
+    .kicker{
+      text-transform:uppercase;
+      font-size:12px;
+      letter-spacing:2.4px;
+      color:var(--hero-muted);
+      margin-bottom:14px;
+      font-weight:800;
+    }
+
+    .hero h1{
+      font-size:46px;
+      line-height:1.02;
+      margin:0 0 14px;
+      letter-spacing:-1.2px;
+    }
+
+    .hero p{
+      font-size:16px;
+      color:var(--hero-muted);
+      line-height:1.68;
+      margin:0 0 22px;
+      max-width:660px;
+    }
+
+    .btnrow{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:14px;
+      background:var(--btn);
+      color:var(--btn-ink);
+      font-weight:900;
+      text-decoration:none;
+      font-size:14px;
+      transition:transform .12s ease, opacity .12s ease;
+      box-shadow: 0 14px 26px rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .btn:hover{ transform:translateY(-1px); opacity:.97; }
+    .btn:active{ transform:translateY(0px); opacity:.90; }
+
+    .proof{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.82);
+      font-size:12.5px;
+      white-space:nowrap;
+    }
+    .pill b{ color:rgba(255,255,255,.96); font-weight:900; }
+
+    .note{
+      font-size:12.5px;
+      color:rgba(255,255,255,.70);
+      line-height:1.5;
+      margin-top:12px;
+      max-width:640px;
+    }
+
+    section{ margin-top:64px; }
+    h2{
+      font-size:22px;
+      margin:0 0 12px;
+      letter-spacing:-.2px;
+    }
+    .sub{
+      margin:0 0 22px;
+      color:var(--muted);
+      line-height:1.65;
+      max-width:900px;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      backdrop-filter:saturate(120%) blur(3px);
+      box-shadow:var(--shadow-soft);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow: 0 22px 50px rgba(0,0,0,.14);
+    }
+    .card strong{
+      display:block;
+      margin-bottom:7px;
+      font-size:14px;
+      letter-spacing:-.1px;
+      font-weight:900;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.58;
+      font-size:14px;
+    }
+    .metric{
+      margin-top:14px;
+      padding:14px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.62);
+      border:1px solid rgba(16,17,20,.10);
+      color:rgba(16,17,20,.82);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .panel{
+      background:rgba(255,255,255,.56);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow-soft);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .panel:hover{
+      transform:translateY(-4px);
+      box-shadow: 0 22px 50px rgba(0,0,0,.14);
+    }
+    .panel h3{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .list{
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+    .list li{
+      padding:10px 0;
+      border-bottom:1px solid rgba(0,0,0,.06);
+      color:var(--muted);
+      line-height:1.55;
+      font-size:14px;
+    }
+    .list li:last-child{ border-bottom:none; }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .stepnum{
+      width:34px;height:34px;
+      border-radius:11px;
+      background:rgba(16,17,20,.92);
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      font-size:13px;
+      margin-bottom:12px;
+      box-shadow: 0 12px 20px rgba(0,0,0,.14);
+      transition: transform .2s ease;
+    }
+    .card:hover .stepnum{ transform: scale(1.1); }
+
+    .faq{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .q{
+      font-weight:900;
+      font-size:14px;
+      margin-bottom:6px;
+    }
+    .a{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    footer{
+      margin-top:70px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+      font-size:12.5px;
+      color:rgba(16,17,20,.62);
+      line-height:1.55;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .foot-links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    footer a{
+      color:rgba(16,17,20,.72);
+      text-decoration:none;
+      border-bottom:1px solid rgba(16,17,20,.22);
+      transition:color .2s ease, border-color .2s ease, opacity .2s ease;
+    }
+    footer a:hover{
+      color:rgba(16,17,20,.94);
+      border-bottom-color:rgba(16,17,20,.46);
+    }
+    footer a:focus-visible{
+      outline:2px solid rgba(16,17,20,.26);
+      outline-offset:2px;
+      border-bottom-color:rgba(16,17,20,.46);
+    }
+    .footer-main{
+      gap:22px;
+    }
+    .footer-links{
+      justify-content:flex-start;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(28px);
+      transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .float-cta{
+      display:none;
+      position:fixed;
+      bottom:20px;
+      left:16px;
+      right:16px;
+      z-index:100;
+      text-align:center;
+    }
+    .float-cta a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      max-width:400px;
+      padding:16px 24px;
+      border-radius:16px;
+      background:rgba(17,19,21,.96);
+      color:white;
+      font-weight:900;
+      font-size:14px;
+      text-decoration:none;
+      box-shadow: 0 8px 32px rgba(0,0,0,.28);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    @keyframes heroIn{
+      from{ opacity:0; transform:translateY(22px) scale(.985); }
+      to{ opacity:1; transform:translateY(0) scale(1); }
+    }
+
+    @media(max-width:980px){
+      .top-note{ text-align:left; }
+      .hero{
+        grid-template-columns:1fr;
+        padding:42px 26px;
+        gap:26px;
+      }
+      .hero h1{ font-size:34px; }
+      .logo{ max-width:360px; }
+      .grid3, .grid2, .steps, .faq{ grid-template-columns:1fr; }
+      .footer-main{ flex-direction:column; align-items:flex-start; }
+      .footer-links{ gap:10px 14px; font-size:13.5px; }
+      .float-cta{ display:block; }
+      .wrap{ padding-bottom:120px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+  <div class="brand-mini"><span class="dot"></span> StorePilot™</div>
+
+  <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:13px;">
+    <strong>Italiano</strong>
+    <a href="en.html" style="color:rgba(16,17,20,.78); text-decoration:none; border-bottom:1px solid rgba(16,17,20,.2);">
+      English
+    </a>
+  </div>
+
+</div>
+
+    <div class="hero">
+      <div>
+        <img class="logo" src="logo.png" alt="StorePilot™ logo">
+      </div>
+      <div>
+        <div class="kicker">SIMULA • VALUTA • DECIDI</div>
+
+        <h1>Simula la sostenibilità economica del tuo locale</h1>
+
+        <p>
+          StorePilot™ è il simulatore economico per ristorazione e food retail che trasforma in pochi secondi
+          ordini, scontrino medio e costi in ricavi, EBITDA e break-even.
+          Utile sia per validare un nuovo progetto, sia per stressare i margini di un business già operativo.
+        </p>
+
+        <div class="btnrow">
+          <a href="https://storepilot.streamlit.app" class="btn" target="_blank" rel="noopener noreferrer">
+            Accedi al simulatore
+          </a>
+        </div>
+
+        <div class="note">Measure twice. Sign once.</div>
+      </div>
+    </div>
+
+    <section class="reveal">
+      <h2>Cosa ottieni in pochi minuti</h2>
+      <p class="sub">
+        Inserisci pochi input operativi e ottieni KPI economici leggibili, confrontabili e coerenti con la reale sostenibilità del singolo locale.
+      </p>
+
+      <div class="grid3">
+        <div class="card">
+          <strong>Ricavi a regime</strong>
+          <p>Proiezione mensile e annua basata su ordini, ticket e giorni di apertura.</p>
+          <div class="metric">Utile per capire subito l’ordine di grandezza del modello.</div>
+        </div>
+        <div class="card">
+          <strong>EBITDA</strong>
+          <p>Margine operativo in valore e percentuale, con lettura immediata delle leve.</p>
+          <div class="metric">Utile per misurare sostenibilità e margine di manovra.</div>
+        </div>
+        <div class="card">
+          <strong>Break-even</strong>
+          <p>Punto di pareggio espresso in ricavi e ordini/giorno, per capire “quanto serve”.</p>
+          <div class="metric">Utile per stress test e confronto tra scenari.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <h2>Per chi è</h2>
+      <p class="sub">
+        StorePilot™ è pensato per chi opera nella ristorazione e vuole validare un’idea o migliorare i numeri di un’attività già avviata,
+        senza affidarsi a sensazioni.
+      </p>
+
+      <div class="grid2">
+        <div class="panel">
+          <h3>Se stai valutando un nuovo progetto</h3>
+          <ul class="list">
+            <li>Validare la sostenibilità prima di investire (ricavi, margini, break-even).</li>
+            <li>Capire quali assunti “reggono” e quali no, prima di firmare o partire.</li>
+            <li>Confrontare scenari diversi usando sempre la stessa base: vendite nette e margini del singolo locale.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Se sei già operativo</h3>
+          <ul class="list">
+            <li>Testare scenari: riduzione food cost, ottimizzazione personale, variazioni ticket.</li>
+            <li>Misurare l’impatto di scelte operative sui margini, non solo sui ricavi.</li>
+            <li>Stressare il modello e identificare priorità di intervento.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <h2>Come funziona</h2>
+      <p class="sub">
+        Pochi passaggi, zero complessità: l’obiettivo è arrivare ai numeri che contano in modo rapido e comprensibile.
+      </p>
+
+      <div class="steps">
+        <div class="card">
+          <div class="stepnum">1</div>
+          <strong>Inserisci gli input base</strong>
+          <p>Ordini medi, scontrino e giorni di apertura. Ti basta una fascia oraria per iniziare.</p>
+        </div>
+        <div class="card">
+          <div class="stepnum">2</div>
+          <strong>Configura i costi</strong>
+          <p>Imposta la struttura dei costi in % o in €: COGS, personale, OPEX, marketing e occupancy.</p>
+        </div>
+        <div class="card">
+          <div class="stepnum">3</div>
+          <strong>Leggi KPI e report</strong>
+          <p>Ottieni ricavi, EBITDA e break-even con grafici e report pronti da condividere.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <h2>Domande frequenti</h2>
+      <div class="faq">
+        <div class="card">
+          <div class="q">I ricavi sono lordi o netti?</div>
+          <p class="a">StorePilot™ lavora su vendite nette, cioè al netto IVA, per restare coerente con un conto economico reale.</p>
+        </div>
+        <div class="card">
+          <div class="q">Serve essere esperti di finanza?</div>
+          <p class="a">No. Il simulatore è pensato per rendere leggibili KPI e leve operative anche a chi non è tecnico.</p>
+        </div>
+        <div class="card">
+          <div class="q">Posso usarlo anche se ho già un locale?</div>
+          <p class="a">Sì. È utile proprio per testare scenari e stressare margini: food cost, labor, ticket, volumi.</p>
+        </div>
+        <div class="card">
+          <div class="q">È adatto solo per nuove aperture?</div>
+          <p class="a">No. È pensato sia per analisi preventive sia per ottimizzazione e controllo di gestione.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:80px;">
+  <div style="margin-bottom:22px;">
+    <h2 style="margin:0 0 8px 0;">Risorse utili</h2>
+    <p style="margin:0;color:#666;max-width:700px;line-height:1.6;">
+      Approfondimenti per valutare break-even, business plan e fattibilità economica di un progetto nella ristorazione.
+    </p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;">
+    <a href="calcolo-break-even-ristorante.html" style="display:block;padding:22px 24px;border-radius:22px;background:rgba(255,255,255,.58);border:1px solid rgba(16,17,20,.08);box-shadow:0 10px 30px rgba(0,0,0,.06);text-decoration:none;color:#222;">
+      <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Calcolo break even ristorante</div>
+      <div style="color:#666;line-height:1.6;">Come stimare il punto di pareggio di un ristorante.</div>
+    </a>
+
+    <a href="business-plan-ristorante.html" style="display:block;padding:22px 24px;border-radius:22px;background:rgba(255,255,255,.58);border:1px solid rgba(16,17,20,.08);box-shadow:0 10px 30px rgba(0,0,0,.06);text-decoration:none;color:#222;">
+      <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Business plan ristorante</div>
+      <div style="color:#666;line-height:1.6;">Le variabili economiche fondamentali per costruire un business plan.</div>
+    </a>
+
+    <a href="analisi-fattibilita-ristorante.html" style="display:block;padding:22px 24px;border-radius:22px;background:rgba(255,255,255,.58);border:1px solid rgba(16,17,20,.08);box-shadow:0 10px 30px rgba(0,0,0,.06);text-decoration:none;color:#222;">
+      <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Analisi fattibilità ristorante</div>
+      <div style="color:#666;line-height:1.6;">Come capire se una location o un format sono sostenibili.</div>
+    </a>
+
+    <a href="simulatore-ristorazione.html" style="display:block;padding:22px 24px;border-radius:22px;background:rgba(255,255,255,.58);border:1px solid rgba(16,17,20,.08);box-shadow:0 10px 30px rgba(0,0,0,.06);text-decoration:none;color:#222;">
+      <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Simulatore economico ristorazione</div>
+      <div style="color:#666;line-height:1.6;">Panoramica sul simulatore StorePilot™ per ricavi, EBITDA e break-even.</div>
+    </a>
+  </div>
+</section>
+
+    <footer style="margin-top:72px;padding-top:24px;border-top:1px solid #d8d0c7;">
+  <div class="footer-main" style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;max-width:1120px;margin:0 auto;">
+    
+    <div>
+      <div style="font-weight:700;font-size:26px;line-height:1;margin-bottom:10px;color:#2d2d2d;">StorePilot™</div>
+      <p style="margin:0;color:#666;max-width:340px;line-height:1.7;font-size:15px;">
+        Simulatore economico per ristorazione e food retail.
+      </p>
+    </div>
+
+    <div class="footer-links" style="display:flex;gap:18px 22px;flex-wrap:wrap;align-items:center;font-size:14px;line-height:1.4;">
+      <a href="about-it.html">Chi siamo</a>
+      <a href="privacy-it.html">Privacy</a>
+      <a href="terms-it.html">Termini</a>
+      <a href="cookie-it.html">Cookie</a>
+      <a href="mailto:privacy@storepilot.eu">privacy@storepilot.eu</a>
+      <a href="en.html">English</a>
+    </div>
+
+  </div>
+
+  <div style="max-width:1120px;margin:18px auto 0;padding-top:16px;border-top:1px solid #e2dbd2;font-size:13px;color:#888;">
+    StorePilot™ — Tutti i diritti riservati.
+  </div>
+</footer>
+
+  </div>
+
+  <div class="float-cta" aria-hidden="true">
+    <a href="https://storepilot.streamlit.app" target="_blank" rel="noopener noreferrer">
+      Accedi al simulatore &rarr;
+    </a>
+  </div>
+
+  <script>
+    const io = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    const cardIo = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          const cards = e.target.querySelectorAll('.card, .panel');
+          cards.forEach((c, i) => {
+            c.style.opacity = '0';
+            c.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              c.style.transition = 'opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1)';
+              c.style.opacity = '1';
+              c.style.transform = 'translateY(0)';
+            }, i * 90);
+          });
+          cardIo.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('.grid3, .grid2, .steps, .faq').forEach(el => cardIo.observe(el));
+  </script>
+</body>
+</html>
