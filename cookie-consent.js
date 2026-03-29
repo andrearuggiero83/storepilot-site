@@ -105,6 +105,23 @@
     document.head.appendChild(script);
   }
 
+  function trackSimulatorClicks() {
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest('a[href*="storepilot.streamlit.app"]');
+      if (!link || !gaLoaded || typeof window.gtag !== 'function') {
+        return;
+      }
+      var label = (link.textContent || '').replace(/\s+/g, ' ').trim() || 'simulator_cta';
+      window.gtag('event', 'click_simulator', {
+        event_category: 'engagement',
+        event_label: label,
+        link_url: link.href,
+        page_path: window.location.pathname,
+        page_title: document.title
+      });
+    });
+  }
+
   function applyChoice(analytics) {
     savePrefs(analytics);
     if (analytics) {
@@ -187,6 +204,7 @@
   function init() {
     injectStyles();
     buildBanner();
+    trackSimulatorClicks();
     var prefs = readPrefs();
     if (!prefs) {
       openBanner();
